@@ -17,7 +17,7 @@ export class LoginService{
             localStorage.setItem("token", token);
         },
         error => {
-            console.error("Dados inválidos!")
+            alert('Acesso negado!');
         });
     }
 }
