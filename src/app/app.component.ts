@@ -9,12 +9,6 @@ import {LoginService } from './service/LoginService';
 export class AppComponent {
   title = 'Angular';
 
-  user = {login: '', pass: ''};
-
-  constructor(private loginService: LoginService){}
-
-  public login(){
-    this.loginService.login(this.user);
-  }
+ 
 
 }
