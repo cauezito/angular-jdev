@@ -12,11 +12,7 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     let id = this.routeActive.snapshot.paramMap.get('id');
-    if(id !== null){
-      console.log("id! " + id);
-    } else {
-      console.log("s/ id");
-    }
+    
   }
 
 }
