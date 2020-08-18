@@ -19,4 +19,10 @@ export class UserService{
         return this.http.delete(Constants.url + id, {responseType: 'text'});
     }
 
+    findUserByName(name : String) : Observable<any>{
+        console.log("name: " + name);
+        return this.http.get(Constants.url + "find/" + name );
+        
+    }
+
 }

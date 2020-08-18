@@ -11,6 +11,7 @@ import { User } from 'src/app/model/User';
 export class UserComponent implements OnInit{
 
     users : Observable<User[]>;
+    name : String;
 
     constructor(private userService : UserService){}
 
@@ -27,5 +28,12 @@ export class UserComponent implements OnInit{
       });
       });
     }
-    
+
+    findUserByName(){
+      if(this.name !== undefined && this.name !== ""){
+        this.userService.findUserByName(this.name).subscribe(data => {
+          this.users = data;
+        });
+    }     
+}
 }
