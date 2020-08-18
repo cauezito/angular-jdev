@@ -9,12 +9,15 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './service/HeaderInterceptor';
 import { UserComponent } from './components/user/user.component';
+import { NewUserComponent } from './components/user/newUser/new-user.component';
 
 export const appRoutes: Routes = [
   {path : 'home', component : HomeComponent},
   {path: 'login', component : LoginComponent},
   {path: '', component: LoginComponent},
-  {path: 'users', component: UserComponent}
+  {path: 'users', component: UserComponent},
+  {path: 'newUser', component: NewUserComponent},
+  {path: 'newUser/:id', component: NewUserComponent},
 ];
 
 export const routes  : ModuleWithProviders = RouterModule.forRoot(appRoutes);
@@ -26,7 +29,8 @@ export const routes  : ModuleWithProviders = RouterModule.forRoot(appRoutes);
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

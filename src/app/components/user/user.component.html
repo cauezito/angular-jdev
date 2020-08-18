@@ -1,11 +1,11 @@
 <div class="container">
 
   <form class="form-inline mt-4">
-    <div class="form-group mx-sm-3 mb-4 mt-4">
+
       <input type="text"  [(ngModel)]="name" class="form-control" id="name"
-       name="name" placeholder="Find an user">
-    </div>
-    <button type="button" (click)="findUserByName()" class="btn btn-primary mb-4 mt-4">Ok </button>
+       name="name" placeholder="Find an user">  
+    <button type="button" (click)="findUserByName()" class="btn btn-primary mb-4 mt-4 mr-2 ml-1">Search </button>
+    <button  [routerLink]="['/newUser']" class="btn btn-success mb-4 mt-4 ml-2">New</button>
   </form>
 
 <table class="table table-dark">
@@ -15,7 +15,8 @@
         <th scope="col">Login</th>
         <th scope="col">Name</th>
         <th scope="col">Surname</th>
-        <th scope="col">Action</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +25,8 @@
           <td>{{user.login}}</td>
           <td>{{user.name}}</td>
           <td>{{user.surname}}</td> 
-          <td><button (click)="deleteUser(user.id)" class="btn btn-light">Delete</button></td>
+          <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button></td>
+          <td><button [routerLink]="['/newUser', user.id]" routerLinkActive="router-link-active"  class="btn btn-light">Update</button></td>
       </tr>
     </tbody>
   </table>

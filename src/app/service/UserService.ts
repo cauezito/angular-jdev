@@ -20,9 +20,7 @@ export class UserService{
     }
 
     findUserByName(name : String) : Observable<any>{
-        console.log("name: " + name);
-        return this.http.get(Constants.url + "find/" + name );
-        
+        return this.http.get(Constants.url + "find/" + name );        
     }
 
 }
