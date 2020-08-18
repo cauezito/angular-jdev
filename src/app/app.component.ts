@@ -14,8 +14,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     if(localStorage.getItem('token') == null){
       this.router.navigate(['login']);
-    } else {
-      this.router.navigate(['home']);
     }
   }
 

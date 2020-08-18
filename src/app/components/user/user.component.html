@@ -1,0 +1,22 @@
+<div class="container">
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Login</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+          <th>{{user.id}}</th>    
+          <td>{{user.login}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.surname}}</td> 
+          <td><button (click)="deleteUser(user.id)" class="btn btn-light">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
