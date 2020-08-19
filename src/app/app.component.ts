@@ -22,6 +22,14 @@ export class AppComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
+  public hiddenNav(){
+    if(localStorage.getItem('token') !== null && 
+     localStorage.getItem('token').toString().trim() !== null){
+       return false;
+     }
+     return true;
+  }
+
 
  
 
