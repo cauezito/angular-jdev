@@ -8,7 +8,6 @@ export class HeaderInterceptorService implements HttpInterceptor {
 
     if (localStorage.getItem('token') !== null) {
       const token = 'Bearer ' + localStorage.getItem('token');
-      console.log('token: '  + token);
 
       const tokenRequest = req.clone({
         headers: req.headers.set('Authorization', token)

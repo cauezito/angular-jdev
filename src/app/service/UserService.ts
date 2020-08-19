@@ -15,6 +15,10 @@ export class UserService{
         return this.http.get<any>(Constants.url);
     }
 
+    getUser(id) : Observable<any>{
+        return this.http.get<any>(Constants.url + id);
+    }
+
     deleteUser(id : Number) : Observable<any>{
         return this.http.delete(Constants.url + id, {responseType: 'text'});
     }

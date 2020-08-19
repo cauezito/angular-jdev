@@ -3,4 +3,5 @@ export class User{
     login: String;
     name: String;
     surname: String;
+    pass: String;
 }
