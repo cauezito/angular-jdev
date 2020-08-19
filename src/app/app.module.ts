@@ -10,14 +10,17 @@ import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './service/HeaderInterceptor';
 import { UserComponent } from './components/user/user.component';
 import { NewUserComponent } from './components/user/newUser/new-user.component';
+import { AuthGuard } from './service/auth.guard';
+
+
 
 export const appRoutes: Routes = [
-  {path : 'home', component : HomeComponent},
+  {path : 'home', component : HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component : LoginComponent},
   {path: '', component: LoginComponent},
-  {path: 'users', component: UserComponent},
-  {path: 'newUser', component: NewUserComponent},
-  {path: 'newUser/:id', component: NewUserComponent},
+  {path: 'users', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'newUser', component: NewUserComponent, canActivate: [AuthGuard]},
+  {path: 'newUser/:id', component: NewUserComponent, canActivate: [AuthGuard]},
 ];
 
 export const routes  : ModuleWithProviders = RouterModule.forRoot(appRoutes);

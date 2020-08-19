@@ -35,4 +35,12 @@ export class UserService{
         return this.http.put<any>(Constants.url, user);
     }
 
+    userAuth(){
+        if(localStorage.getItem('token') !== null &&
+        localStorage.getItem('token').toString().trim() !== null){
+            return true;
+        }
+        return false;
+    }
+
 }
