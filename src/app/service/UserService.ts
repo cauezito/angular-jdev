@@ -27,4 +27,12 @@ export class UserService{
         return this.http.get(Constants.url + "find/" + name );        
     }
 
+    saveUser(user) : Observable<any>{
+        return this.http.post<any>(Constants.url, user);
+    }
+
+    updateUser(user) : Observable<any>{
+        return this.http.put<any>(Constants.url, user);
+    }
+
 }

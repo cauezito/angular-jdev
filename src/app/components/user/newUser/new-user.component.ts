@@ -21,8 +21,21 @@ export class NewUserComponent implements OnInit {
       this.userService.getUser(id).subscribe(data => {
         this.user = data;
       });
+    }     
+  }
+  saveUser(){
+    if(this.user.id != null && this.user.id.toString().trim() != null){ //update
+      this.userService.updateUser(this.user).subscribe(data => {
+      });
+    } 
+    else { //save
+      this.userService.saveUser(this.user).subscribe(data => {
+      });
     }
-    
+  }
+
+  newUser(){
+    this.user = new User();
   }
 
 }

@@ -31,7 +31,8 @@
             <div class="form-group col-md-6">
                 <button type="button" class="btn btn-secondary mr-2"  [routerLink]="['/users']">
                     RETURN</button>
-                <button type="button" class="btn btn-primary">GO</button>
+                <button type="button" (click)="saveUser()" class="btn btn-success mr-2">SAVE</button>
+                <button type="button" (click)="newUser()" class="btn btn-primary">NEW</button>
         </div>
         </div>
       </form>
