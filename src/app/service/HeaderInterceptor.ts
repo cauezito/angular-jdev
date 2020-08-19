@@ -1,5 +1,7 @@
 import { Injectable, NgModule } from '@angular/core';
-import { HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptor, HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HeaderInterceptorService implements HttpInterceptor {
@@ -12,14 +14,33 @@ export class HeaderInterceptorService implements HttpInterceptor {
       const tokenRequest = req.clone({
         headers: req.headers.set('Authorization', token)
       });
-      return next.handle(tokenRequest);
+      return next.handle(tokenRequest).pipe(
+        tap((event: HttpEvent<any>) => {
+          if(event instanceof HttpResponse && (event.status === 200 
+            || event.status === 201)){
+              console.log("ok")
+            }
+        }),
+        catchError(this.checkError));
     } else {
-      return next.handle(req);
+      return next.handle(req).pipe(catchError(this.checkError));
     }
 
   }
 
   constructor() { }
+
+  checkError(error: HttpErrorResponse){
+    let message = "Unknow error";
+    if(error.error instanceof ErrorEvent){
+      console.error(error.error);
+      message = "Error: " + error.error.error;
+    } else {
+      message = "Code: " + error.error.code + '\Message:  ' + error.error.error;
+    }
+    alert(message);
+    return throwError(message);
+  }
 }
 
 @NgModule({

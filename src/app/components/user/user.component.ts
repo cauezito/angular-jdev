@@ -22,11 +22,13 @@ export class UserComponent implements OnInit{
     }
 
     deleteUser(id: Number){
-      this.userService.deleteUser(id).subscribe(data => {
-        this.userService.getUsers().subscribe(data => {
-          this.users = data;
-      });
-      });
+      if(confirm("Tem certeza que deseja excluir?")){
+        this.userService.deleteUser(id).subscribe(data => {
+          this.userService.getUsers().subscribe(data => {
+            this.users = data;
+        });
+        });
+    }
     }
 
     findUserByName(){
