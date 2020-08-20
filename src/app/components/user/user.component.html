@@ -20,19 +20,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users | paginate: {itemsPerPage: 5, currentPage: p}">
+      <tr *ngFor="let user of users | paginate: {itemsPerPage: 5, currentPage: p, totalItems: total}; let i = index">
           <th>{{user.id}}</th>    
           <td>{{user.login}}</td>
           <td>{{user.name}}</td>
           <td>{{user.surname}}</td> 
-          <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button></td>
+          <td><button (click)="deleteUser(user.id, i)" class="btn btn-danger">Delete</button></td>
           <td><button [routerLink]="['/newUser', user.id]" routerLinkActive="router-link-active"  class="btn btn-light">Update</button></td>
       </tr>
     </tbody>
   </table>
 
 <div class="text-center">
-  <pagination-controls (pageChange)="p = $event" responsive="true"></pagination-controls>
+  <pagination-controls (pageChange)="loadPage(p = $event);" responsive="true"></pagination-controls>
 </div>
 
 </div>

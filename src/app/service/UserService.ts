@@ -14,6 +14,10 @@ export class UserService{
         return this.http.get<any>(Constants.url);
     }
 
+    getUsersListPage(page): Observable<any>{
+        return this.http.get<any>(Constants.url + 'page/ ' + page);
+    }
+
     getUser(id) : Observable<any>{
         return this.http.get<any>(Constants.url + id);
     }
@@ -24,6 +28,10 @@ export class UserService{
 
     findUserByName(name : String) : Observable<any>{
         return this.http.get(Constants.url + "find/" + name );        
+    }
+
+    findUserByNamePage(name : String, page : Number) : Observable<any>{
+        return this.http.get(Constants.url + "find/" + name + "/page/" + page);        
     }
 
     saveUser(user) : Observable<any>{

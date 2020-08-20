@@ -10,36 +10,53 @@ import { User } from 'src/app/model/User';
 
 export class UserComponent implements OnInit{
 
-    users : Observable<User[]>;
+    users : Array<User[]>;
     name : String;
+    total : Number;
 
     constructor(private userService : UserService){}
 
     ngOnInit(){
        this.userService.getUsers().subscribe(data => {
-           this.users = data;
+           this.users = data.content;
+           this.total = data.totalElements;
        });
     }
 
-    deleteUser(id: Number){
+    deleteUser(id: Number, index){
       if(confirm("Are you sure?")){
         this.userService.deleteUser(id).subscribe(data => {
-          this.userService.getUsers().subscribe(data => {
-            this.users = data;
-        });
+          this.users.splice(index, 1);
         });
     }
     }
 
     findUserByName(){
-      if(this.name !== undefined && this.name !== ""){
+     if(this.name !== undefined && this.name !== ""){
         this.userService.findUserByName(this.name).subscribe(data => {
-          this.users = data;
+          console.info(data.content);
+          this.users = data.content;
+          this.total = data.totalElements;
         });
-    } else {
+   } else {
       this.userService.getUsers().subscribe(data => {
-        this.users = data;
+        this.users = data.content;
+        this.total = data.totalElements;
     });
-    }     
+   }     
 }
+
+ loadPage(page){
+   if(this.name !== ''){
+    this.userService.findUserByNamePage(this.name, page - 1).subscribe(data => {
+      this.users = data.content;
+      this.total = data.totalElements;
+    });
+   } else {
+    this.userService.getUsersListPage(page - 1).subscribe(data => {
+      this.users = data.content;
+      this.total = data.totalElements;
+  }); 
+  }
+ }
 }
