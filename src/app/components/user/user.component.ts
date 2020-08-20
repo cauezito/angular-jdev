@@ -22,7 +22,7 @@ export class UserComponent implements OnInit{
     }
 
     deleteUser(id: Number){
-      if(confirm("Tem certeza que deseja excluir?")){
+      if(confirm("Are you sure?")){
         this.userService.deleteUser(id).subscribe(data => {
           this.userService.getUsers().subscribe(data => {
             this.users = data;

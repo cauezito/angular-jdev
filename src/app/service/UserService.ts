@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Constants } from '../app.constants';
 
@@ -33,6 +32,11 @@ export class UserService{
 
     updateUser(user) : Observable<any>{
         return this.http.put<any>(Constants.url, user);
+    }
+
+    deleteTelephone(id) : Observable<any>{
+        return this.http.delete(Constants.url + "deleteTelephone/" +id, 
+        {responseType: 'text'});
     }
 
     userAuth(){

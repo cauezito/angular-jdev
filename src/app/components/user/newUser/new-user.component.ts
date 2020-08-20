@@ -36,6 +36,15 @@ export class NewUserComponent implements OnInit {
     this.newUser();
   }
 
+  deleteTelephone(id){
+    if(id !== null && confirm("Are you sure?")){
+      this.userService.deleteTelephone(id).subscribe(data => {
+      const index = this.user.phones.indexOf(id);
+      this.user.phones.splice(index - 1, 1);
+      });
+    }
+  }
+
   newUser(){
     this.user = new User();
   }

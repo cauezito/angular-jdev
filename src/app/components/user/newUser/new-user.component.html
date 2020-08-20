@@ -1,7 +1,14 @@
 <div class="container">
-    <h4 class="display-4 text-center mb-4 mt-4">User details</h4>
-
+ 
     <form #userDetails="ngForm">
+        <h4 class="display-4 text-center mb-4 mt-4">User details</h4>
+          <div class="form-group col-md-5 mb-4 mt-4">
+              <button type="button" class="btn btn-secondary mr-1 btn-sm"  [routerLink]="['/users']">
+                  RETURN</button>
+              <button type="button" [disabled]="userDetails.invalid" (click)="saveUser()" class="btn btn-success mr-1 btn-sm">SAVE</button>
+              <button type="button" (click)="newUser()" class="btn btn-primary btn-sm">NEW</button>
+      </div>
+
         <div class="form-row mt-4">
           <div class="form-group col-md-2">
             <label for="id">ID</label>
@@ -31,46 +38,38 @@
             name="pass" required>
           </div>
         </div>
-        <div class="row mt-4 mb-4">
-        <div class="card text-center col-md-5 mr-4">
+       
+        <div class="card text-center col-md-12 mt-4 mb-4">
           <div class="card-header">
-            New phone number
+            Telephones
           </div>
           <div class="card-body">
-            <div class="form-row">
-              <div class="form-group form-group-sm col-md-10">
+            <div class="form-row" style="text-align: center;">
+              <div class="form-group form-group-sm col-sm-9 col-md-4">
               <input class="form-control input-sm" type="text" name="phone">
             </div>
 
-            <div class="form-group col-md-1">
+            <div class="form-group col-sm-2 col-md-1">
               <button class="btn btn-light">Add</button>
             </div>
-
           </div>
-        </div>
-      </div>
 
-        <table class="table table-borderless col-md-6">
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let phone of user.phones">
-              <td>{{phone.number}}</td>
-              <td><button class="btn btn-danger btn-sm">Delete</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <button type="button" class="btn btn-secondary mr-2"  [routerLink]="['/users']">
-                    RETURN</button>
-                <button type="button" [disabled]="userDetails.invalid" (click)="saveUser()" class="btn btn-success mr-2">SAVE</button>
-                <button type="button" (click)="newUser()" class="btn btn-primary">NEW</button>
+          <div class="form-row">
+            <table class="table table-borderless col-md-12">
+              <thead>
+                <tr>
+                  <th>Number</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let phone of user.phones">
+                  <td>{{phone.number}}</td>
+                  <td><button class="btn btn-danger btn-sm" (click)="deleteTelephone(phone.id)">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>    
+          </div>
         </div>
         </div>
       </form>
