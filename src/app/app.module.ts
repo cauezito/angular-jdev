@@ -12,6 +12,7 @@ import { UserComponent } from './components/user/user.component';
 import { NewUserComponent } from './components/user/newUser/new-user.component';
 import { AuthGuard } from './service/auth.guard';
 import {NgxMaskModule, IConfig } from 'ngx-mask';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export const appRoutes: Routes = [
   {path : 'home', component : HomeComponent, canActivate: [AuthGuard]},
@@ -41,6 +42,7 @@ export const optionsMask : Partial<IConfig> | (() =>Partial<IConfig>) = {};
     routes,
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionsMask),
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
