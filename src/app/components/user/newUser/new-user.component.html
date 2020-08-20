@@ -31,6 +31,40 @@
             name="pass" required>
           </div>
         </div>
+        <div class="row mt-4 mb-4">
+        <div class="card text-center col-md-5 mr-4">
+          <div class="card-header">
+            New phone number
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group form-group-sm col-md-10">
+              <input class="form-control input-sm" type="text" name="phone">
+            </div>
+
+            <div class="form-group col-md-1">
+              <button class="btn btn-light">Add</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+        <table class="table table-borderless col-md-6">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let phone of user.phones">
+              <td>{{phone.number}}</td>
+              <td><button class="btn btn-danger btn-sm">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <button type="button" class="btn btn-secondary mr-2"  [routerLink]="['/users']">

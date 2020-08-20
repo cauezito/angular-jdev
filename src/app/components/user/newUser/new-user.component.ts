@@ -26,12 +26,14 @@ export class NewUserComponent implements OnInit {
   saveUser(){
     if(this.user.id != null && this.user.id.toString().trim() != null){ //update
       this.userService.updateUser(this.user).subscribe(data => {
+       
       });
     } 
     else { //save
       this.userService.saveUser(this.user).subscribe(data => {
       });
     }
+    this.newUser();
   }
 
   newUser(){
