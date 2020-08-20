@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { UserService } from 'src/app/service/UserService';
+import { Telephone } from 'src/app/model/telephone';
 
 @Component({
   selector: 'app-new-user',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/service/UserService';
 export class NewUserComponent implements OnInit {
 
   user = new User();
-
+  telephone = new Telephone();
   constructor(private routeActive : ActivatedRoute, private userService : UserService) { }
 
   ngOnInit() {
@@ -36,17 +37,31 @@ export class NewUserComponent implements OnInit {
     this.newUser();
   }
 
-  deleteTelephone(id){
+  deleteTelephone(id, i){
+
+    if(id == null){
+      this.user.phones.splice(i, 1);
+      return;
+    }
+
     if(id !== null && confirm("Are you sure?")){
       this.userService.deleteTelephone(id).subscribe(data => {
-      const index = this.user.phones.indexOf(id);
-      this.user.phones.splice(index - 1, 1);
+      this.user.phones.splice(i, 1);
       });
     }
   }
 
+  addTelephone(){
+    if(this.user.phones === undefined){
+      this.user.phones = new Array<Telephone>();
+    }
+    this.user.phones.push(this.telephone);
+    this.telephone = new Telephone();
+  }
+
   newUser(){
     this.user = new User();
+    this.telephone = new Telephone();
   }
 
 }

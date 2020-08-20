@@ -46,16 +46,17 @@
           <div class="card-body">
             <div class="form-row" style="text-align: center;">
               <div class="form-group form-group-sm col-sm-9 col-md-4">
-              <input class="form-control input-sm" type="text" name="phone">
+              <input class="form-control input-sm" type="text" name="number" id="number"
+              [(ngModel)]="telephone.number">
             </div>
 
             <div class="form-group col-sm-2 col-md-1">
-              <button class="btn btn-light">Add</button>
+              <button class="btn btn-light" (click)="addTelephone(user.phones)">Add</button>
             </div>
           </div>
 
-          <div class="form-row">
-            <table class="table table-borderless col-md-12">
+          <div class="form-row" >
+            <table class="table table-borderless col-md-12" *ngIf="user.phones">
               <thead>
                 <tr>
                   <th>Number</th>
@@ -63,9 +64,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let phone of user.phones">
+                <tr *ngFor="let phone of user.phones; let i = index">
                   <td>{{phone.number}}</td>
-                  <td><button class="btn btn-danger btn-sm" (click)="deleteTelephone(phone.id)">Delete</button></td>
+                  <td><button class="btn btn-danger btn-sm" (click)="deleteTelephone(phone.id, i)">Delete</button></td>
                 </tr>
               </tbody>
             </table>    

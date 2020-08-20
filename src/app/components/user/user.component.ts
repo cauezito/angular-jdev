@@ -36,6 +36,10 @@ export class UserComponent implements OnInit{
         this.userService.findUserByName(this.name).subscribe(data => {
           this.users = data;
         });
+    } else {
+      this.userService.getUsers().subscribe(data => {
+        this.users = data;
+    });
     }     
 }
 }
