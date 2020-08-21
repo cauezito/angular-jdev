@@ -10,19 +10,30 @@
       </div>
 
         <div class="form-row mt-4">
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-1">
             <label for="id">ID</label>
             <input type="number" [(ngModel)]="user.id" name="id" class="form-control" id="id" readonly>
           </div>
-          <div class="form-group col-md-5">
+          <div class="form-group col-md-4">
             <label for="name">Name</label>
             <span style="color: red; font-size: 23px;" *ngIf="nameValidate.invalid"> *</span>
             <input type="text" #nameValidate="ngModel" [(ngModel)]="user.name" name="name" class="form-control" id="name" required>
           </div>
-          <div class="form-group col-md-5">
+          <div class="form-group col-md-4">
             <label for="surname">Surname</label>
             <span style="color: red; font-size: 23px;" *ngIf="surnameValidate.invalid"> *</span>
             <input type="text" #surnameValidate="ngModel" [(ngModel)]="user.surname" name="surname" class="form-control" id="surname" required>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="birth">Birth</label>
+            <span style="color: red; font-size: 23px;" *ngIf="birthValidate.invalid"> *</span>
+            <div class="input-group">
+              <input type="text" #birthValidate="ngModel" [(ngModel)]="user.birth" name="birth" 
+              class="form-control" id="birth" required ngbDatepicker #birth="ngbDatepicker" >
+              <div class="input-group-append">
+                <button class="btn brn-primary" (click)="birth.toggle()" type="button"></button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-row">

@@ -13,6 +13,7 @@ export class UserComponent implements OnInit{
     users : Array<User[]>;
     name : String;
     total : Number;
+    p : Number;
 
     constructor(private userService : UserService){}
 
