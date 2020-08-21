@@ -55,4 +55,8 @@ export class UserService{
         return false;
     }
 
+    getOccupationList() : Observable<any>{
+        return this.http.get<any>(Constants.path+ 'occupation/');
+    }
+
 }

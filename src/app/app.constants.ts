@@ -10,4 +10,8 @@ export class Constants{
     public static get url() : string {
         return this.server + "rest/user/";
     }
+
+    public static get path(): string {
+        return this.server + "rest/";
+    }
 }

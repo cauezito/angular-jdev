@@ -49,6 +49,19 @@
             name="pass" required>
           </div>
         </div>
+        <div class="form-row mt-3">
+          <div class="form-group col-md-6">
+            <label for="occupation">Occupation</label>
+            <span style="color: red; font-size: 23px;" *ngIf="occupationValidate.invalid">* </span>
+            <select [(ngModel)]="user.occupation.id" id="occupation" name="occupation" #occupationValidate="ngModel"
+            class="form-control" required="true">
+              <option  selected>SELECIONE</option>
+              <option [ngValue]="o.id" *ngFor="let o of occupations">{{o.name}}</option>
+
+            </select>
+         
+          </div>
+        </div>
        
         <div class="card text-center col-md-12 mt-4 mb-4">
           <div class="card-header">
