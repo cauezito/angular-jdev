@@ -3,7 +3,30 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { UserService } from 'src/app/service/UserService';
 import { Telephone } from 'src/app/model/telephone';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+
+@Injectable()
+export class FormatDateAdapter extends NgbDateAdapter<string>{
+
+  readonly DELIMITER = '/';
+
+  fromModel(value: string | null): NgbDateStruct | null {
+    if(value){
+      let date = value.split(this.DELIMITER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      };
+    }
+    return null;
+  }
+  toModel(date: NgbDateStruct | null) : string | null {
+    return date ? date.day + this.DELIMITER + 
+    date.month + this.DELIMITER + date.year : null;
+  }
+
+}
 
 @Injectable()
 export class FormatDate extends NgbDateParserFormatter{
@@ -25,6 +48,11 @@ export class FormatDate extends NgbDateParserFormatter{
     this.formatDayAndMonth(date.month) + this.DELIMITER + date.year : '';
   }
 
+  toModel(date : NgbDateStruct | null) : string | null{
+    return date ? date.day + this.DELIMITER + 
+    date.month + this.DELIMITER + date.year : null;
+  }
+
   formatDayAndMonth(value){
     if(value.toString !== '' && parseInt(value) <= 9){
       return '0'+value;
@@ -38,7 +66,8 @@ export class FormatDate extends NgbDateParserFormatter{
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.css'],
-  providers: [{provide: NgbDateParserFormatter, useClass: FormatDate}]
+  providers: [{provide: NgbDateParserFormatter, useClass: FormatDate},
+  {provide: NgbDateAdapter, useClass: FormatDateAdapter}]
 })
 export class NewUserComponent implements OnInit {
 
