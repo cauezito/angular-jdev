@@ -10,4 +10,5 @@ export class User{
     pass: String;
     phones: Array<Telephone>;
     occupation : Occupation = new Occupation(); 
+    salary: DoubleRange;
 }
