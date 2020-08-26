@@ -60,4 +60,8 @@ export class UserComponent implements OnInit{
   }); 
   }
  }
+ 
+  printReport(){
+    return this.userService.downloadReportPdf();
+  }
 }

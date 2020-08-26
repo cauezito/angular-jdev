@@ -59,4 +59,11 @@ export class UserService{
         return this.http.get<any>(Constants.path+ 'occupation/');
     }
 
+    downloadReportPdf(){
+        return this.http.get(Constants.url + 'report', {responseType: 'text'}).
+        subscribe(data => {
+            document.querySelector('iframe').src = data;
+        });
+    }
+
 }

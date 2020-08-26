@@ -32,7 +32,10 @@
           <div class="form-group row">
             <div class="col-sm-10">
               <button type="button" [disabled]="nickname.invalid || pass.invalid"
-              class="btn btn-primary" (click)="login()">Entrar</button>
+              class="btn btn-primary mr-2" (click)="login()">Entrar</button>
+
+              <button type="button" [disabled]="nickname.invalid"
+              class="btn btn-primary" (click)="recovery()">Recuperar acesso</button>
             </div>
           </div>
         </form>
