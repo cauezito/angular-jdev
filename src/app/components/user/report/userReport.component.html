@@ -1,0 +1,49 @@
+<div class="container">
+ 
+    <form #report="ngForm">
+        <h4 class="display-4 text-center mb-4 mt-4">Report</h4>
+         
+          <div class="form-row">
+            <div class="form-group col-md-3">
+            <div class="input-group">
+              <input type="text" #startDate="ngModel" placeholder="start date" [(ngModel)]="userReport.startDate" name="startDate" 
+              class="form-control" id="startDate" required ngbDatepicker #startDateToggle="ngbDatepicker" >
+              <div class="input-group-append">
+                <button class="btn brn-primary" (click)="startDateToggle.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3">           
+            <div class="input-group">
+              <input type="text" #endDate="ngModel" placeholder="end date" [(ngModel)]="userReport.endDate" name="endDate" 
+              class="form-control" id="endDate" required ngbDatepicker #endDateToggle="ngbDatepicker" >
+              <div class="input-group-append">
+                <button class="btn brn-primary" (click)="endDateToggle.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-5 mb-4 mt-4">
+            <button type="button"  [disabled]="report.invalid" (click)="printReport()"data-toggle="modal" data-target="#showUserReport"  class="btn btn-primary btn-sm">New search</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="showUserReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="min-width: 90%;min-height: 90%; height: 90%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Print users report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdf" width="100%" height="300" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </form>
+
+</div>
