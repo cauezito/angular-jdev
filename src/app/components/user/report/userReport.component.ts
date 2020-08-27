@@ -75,7 +75,7 @@ export class UserReportComponent {
   constructor(private routeActive : ActivatedRoute, private userService : UserService) { }
 
   printReport(){
-    console.log('1')
+    this.userService.downloadReportParam(this.userReport);
   }
 
 }
