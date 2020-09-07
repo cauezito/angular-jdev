@@ -21,8 +21,8 @@ export class FormatDateAdapter extends NgbDateAdapter<string>{
     return null;
   }
   toModel(date: NgbDateStruct | null) : string | null {
-    return date ? date.day + this.DELIMITER + 
-    date.month + this.DELIMITER + date.year : null;
+    return date ? formatDayAndMonth(date.day) + this.DELIMITER + 
+    formatDayAndMonth(date.month) + this.DELIMITER + date.year : null;
   }
 
 }
@@ -43,22 +43,21 @@ export class FormatDate extends NgbDateParserFormatter{
     return null;
   }
   format(date: NgbDateStruct): string | null {
-    return date ? this.formatDayAndMonth(date.day) + this.DELIMITER + 
-    this.formatDayAndMonth(date.month) + this.DELIMITER + date.year : '';
+    return date ? formatDayAndMonth(date.day) + this.DELIMITER + 
+    formatDayAndMonth(date.month) + this.DELIMITER + date.year : '';
   }
 
   toModel(date : NgbDateStruct | null) : string | null{
-    return date ? date.day + this.DELIMITER + 
-    date.month + this.DELIMITER + date.year : null;
-  }
+    return date ? formatDayAndMonth(date.day) + this.DELIMITER + 
+    formatDayAndMonth(date.month)+ this.DELIMITER + date.year : null;
+  }  
+}
 
-  formatDayAndMonth(value){
-    if(value.toString !== '' && parseInt(value) <= 9){
-      return '0'+value;
-    }
-    return value;
+function formatDayAndMonth(value){
+  if(value.toString !== '' && parseInt(value) <= 9){
+    return '0'+value;
   }
-  
+  return value;
 }
 
 @Component({

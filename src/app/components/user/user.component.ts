@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/UserService';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/model/User';
 
 @Component({
@@ -14,6 +13,8 @@ export class UserComponent implements OnInit{
     name : String;
     total : Number;
     p : Number;
+    buttonPdfOn: Boolean;
+    
 
     constructor(private userService : UserService){}
 
@@ -21,6 +22,9 @@ export class UserComponent implements OnInit{
        this.userService.getUsers().subscribe(data => {
            this.users = data.content;
            this.total = data.totalElements;
+           if(this.users.length > 0){
+             this.buttonPdfOn = true;
+           }
        });
     }
 

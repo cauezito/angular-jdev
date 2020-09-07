@@ -38,7 +38,7 @@ export const optionsMask : Partial<IConfig> | (() =>Partial<IConfig>) = {};
     LoginComponent,
     UserComponent,
     NewUserComponent,
-    UserReportComponent
+    UserReportComponent,
   ],
   imports: [
     BrowserModule,

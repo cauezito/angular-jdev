@@ -1,9 +1,10 @@
 <div class="container">
  
     <form #report="ngForm">
-        <h4 class="display-4 text-center mb-4 mt-4">Report</h4>
+        <h4 class="display-4 text-center mb-4 mt-4">Report</h4>        
+       <p> Birthday </p>
+          <div class="form-row mt-4">
          
-          <div class="form-row">
             <div class="form-group col-md-3">
             <div class="input-group">
               <input type="text" #startDate="ngModel" placeholder="start date" [(ngModel)]="userReport.startDate" name="startDate" 
@@ -22,8 +23,8 @@
               </div>
             </div>
           </div>
-          <div class="form-group col-md-5 mb-4 mt-4">
-            <button type="button"  [disabled]="report.invalid" (click)="printReport()"data-toggle="modal" data-target="#showUserReport"  class="btn btn-primary btn-sm">New search</button>
+          <div class="form-group col-md-2 mb-4">
+            <button type="button"  [disabled]="report.invalid" (click)="printReport()"data-toggle="modal" data-target="#showUserReport"  class="btn btn-primary">New search</button>
     </div>
   </div>
 
